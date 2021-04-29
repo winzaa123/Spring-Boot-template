@@ -1,0 +1,15 @@
+
+version: '2'
+services:
+    message-server:
+        container_name: spring-server
+        build:
+            context: ./
+            dockerfile: dev.Dockerfile
+        image: spring-boot:latest
+        working_dir: /app
+        # command:  mvn spring-boot:run -f /app
+        volumes: 
+            - ./:/app
+        ports:
+            - 8088:8080

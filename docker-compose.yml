@@ -1,13 +1,16 @@
-
 version: '2'
+
 services:
     message-server:
         container_name: message-server
-        build:
-            context: docker-message-server
-            dockerfile: Dockerfile
-        image: message-server:latest
+        # build:
+        #     context: docker-message-server
+        #     dockerfile: Dockerfile
+        image: maven:3.8.1-openjdk-16-slim
+        command:  mvn spring-boot:run -f /app
+        environment: 
+            JAVA_ENV: production
+        volumes: 
+            - ./:/app
         ports:
-            - 18888:8888
-        networks:
-            - spring-cloud-network
+            - 8088:8080
